@@ -1,0 +1,1702 @@
+{
+  "meta": {
+    "title": "Java 后端 → AI 应用 / Agent 开发",
+    "subtitle": "20 周作战面板 · 2026.11.23 → 2027.04.11",
+    "start": "2026-11-23",
+    "end": "2027-04-11",
+    "totalWeeks": 20,
+    "hoursPerWeek": 26,
+    "learner": {
+      "city": "南京为主场，上海 / 杭州作为补充",
+      "stack": "Java 后端，AI 与 Python 零基础",
+      "algo": "零基础，前 6 周从数组、二分、哈希表起步",
+      "reviewDay": "周日",
+      "rhythm": "工作日 2h + 周末每天 8h ≈ 26h/周",
+      "goal": "2027 年 4 月拿到 AI 应用 / Agent 开发方向 offer"
+    },
+    "weeklyRhythm": [
+      {
+        "day": "工作日",
+        "hours": "2h",
+        "detail": "50min 主线 + 25min 算法 + 25min 记忆卡 / 记录"
+      },
+      {
+        "day": "周六",
+        "hours": "8h",
+        "detail": "项目日：上午实现，下午测试 / 单测 / 复盘"
+      },
+      {
+        "day": "周日",
+        "hours": "8h",
+        "detail": "交付日：收尾、文档、演示、周复盘、记忆卡周测"
+      }
+    ],
+    "principles": [
+      "先工程，后模型：重试、超时、校验、评测、可观测是第一课，不是最后补。",
+      "两个深项目 > 五个 demo：每个项目都要有评测数据、失败案例和取舍论证。",
+      "每周只改一个变量：调 prompt / RAG / Agent 时，否则永远说不清是谁的功劳。",
+      "Java 不丢：用 Spring AI / LangChain4j 把 AI 接进存量系统，这是差异化。",
+      "边做边投：W17 启动首批投递，用真实面试反馈驱动最后四周。",
+      "留缓冲：W11 是春节缓冲周，不排新课；断一周不等于计划崩盘。"
+    ],
+    "timelineNote": "2027 年春节是 2 月 6 日，第 11 周设为缓冲周（轻量复盘 + 项目二立项），不要在那周排新课；第 12 周前三天仍在假期，先做设计与环境准备，2 月 11 日起再集中编码。"
+  },
+  "phases": [
+    {
+      "id": "P0",
+      "name": "P0 工程地基",
+      "weeks": [
+        1,
+        3
+      ],
+      "range": "2026-11-23 ~ 2026-12-13",
+      "goal": "把开发环境、Python 工程化、LLM 调用层和可观测性一次打牢。",
+      "proof": "能独立写出带重试 / 超时 / 结构化输出 / 日志的 LLM 客户端，并有 20 条评测。"
+    },
+    {
+      "id": "P1",
+      "name": "P1 RAG 工程化",
+      "weeks": [
+        4,
+        6
+      ],
+      "range": "2026-12-14 ~ 2027-01-03",
+      "goal": "把 RAG 从 demo 推到「有评测、有引用、有成本核算」的服务，形成项目一。",
+      "proof": "项目一 v1.0：30 条评测集、优化前后对比、一条命令一键启动。"
+    },
+    {
+      "id": "P2",
+      "name": "P2 Agent 基础",
+      "weeks": [
+        7,
+        9
+      ],
+      "range": "2027-01-04 ~ 2027-01-24",
+      "goal": "手写 Agent 循环，掌握工具设计、状态、记忆、MCP、评测与护栏。",
+      "proof": "单 Agent 完成真实任务：可恢复、有 trace、有 30 条任务评测。"
+    },
+    {
+      "id": "P3",
+      "name": "P3 Agent 工程化",
+      "weeks": [
+        10,
+        12
+      ],
+      "range": "2027-01-25 ~ 2027-02-14",
+      "goal": "用图编排 Agent，支持中断、恢复、人工审批，完成项目二。",
+      "proof": "项目二 v1.0：真实任务链路、30 条评测、可恢复执行、演示视频。"
+    },
+    {
+      "id": "P4",
+      "name": "P4 Java 企业级 AI",
+      "weeks": [
+        13,
+        14
+      ],
+      "range": "2027-02-15 ~ 2027-02-28",
+      "goal": "用 Spring AI / LangChain4j 把 AI 能力接进 Java 服务，形成差异化。",
+      "proof": "项目三 + 多模型路由、审计日志、降级策略、简历 v1。"
+    },
+    {
+      "id": "P5",
+      "name": "P5 生产化与求职",
+      "weeks": [
+        15,
+        18
+      ],
+      "range": "2027-03-01 ~ 2027-03-28",
+      "goal": "三个项目可一键启动，八股、系统设计、简历定稿，并启动投递。",
+      "proof": "作品集 + 70 题答案库 + 5 个系统设计 + 50 家投递。"
+    },
+    {
+      "id": "P6",
+      "name": "P6 面试收尾",
+      "weeks": [
+        19,
+        20
+      ],
+      "range": "2027-03-29 ~ 2027-04-11",
+      "goal": "稳定面试输出、补齐短板、拿到并选对 offer。",
+      "proof": "offer 对比表与决策、20 周复盘长文。"
+    }
+  ],
+  "weeks": [
+    {
+      "n": 1,
+      "phase": "P0 工程地基",
+      "start": "2026-11-23",
+      "theme": "环境、Python 工程化与第一次 API 调用",
+      "goal": "把开发环境、Python 工程化和 LLM 调用层一次打牢，后面每个项目都复用这一层。",
+      "why": "零基础最容易死在先看三个月视频。第一周就动手调 API，把超时、重试、结构化输出、成本这些工程问题一次性解决。",
+      "concepts": [
+        "Python 工程化：uv、src layout、pyproject、ruff、mypy、pytest",
+        "LLM API 基本参数：token、上下文窗口、temperature、top_p",
+        "工程防护：超时、重试、限流、错误分类",
+        "结构化输出：JSON schema、校验、失败重试",
+        "成本与延迟：输入 / 输出 token、TTFT、总耗时"
+      ],
+      "detail": true,
+      "days": [
+        {
+          "date": "2026-11-23",
+          "kind": "weekday",
+          "hours": 2,
+          "focus": "环境自检与技术地图",
+          "tasks": [
+            {
+              "id": "w1d1-t1",
+              "min": 40,
+              "text": "装好 Python 3.13、uv、git、VS Code，四项版本命令全部跑通",
+              "deliverable": true
+            },
+            {
+              "id": "w1d1-t2",
+              "min": 30,
+              "text": "建 dev4 学习仓与 projects/w1 目录，写第一版 README",
+              "deliverable": false
+            },
+            {
+              "id": "w1d1-t3",
+              "min": 30,
+              "text": "用 Java 类比画一张 AI 应用四层地图（应用 / 编排 / 能力 / 模型基础设施）",
+              "deliverable": true
+            },
+            {
+              "id": "w1d1-t4",
+              "min": 20,
+              "text": "写一句：我想投的岗位更偏应用工程还是算法，为什么",
+              "deliverable": false
+            }
+          ],
+          "output": "今日交付：环境自检报告 + 技术地图 v0"
+        },
+        {
+          "date": "2026-11-24",
+          "kind": "weekday",
+          "hours": 2,
+          "focus": "Python 工程化：可测试的包",
+          "tasks": [
+            {
+              "id": "w1d2-t1",
+              "min": 40,
+              "text": "建 src layout + pyproject.toml，uv sync 成功并生成 lock 文件",
+              "deliverable": true
+            },
+            {
+              "id": "w1d2-t2",
+              "min": 30,
+              "text": "配置 ruff + mypy + pytest，跑通一个空测试",
+              "deliverable": true
+            },
+            {
+              "id": "w1d2-t3",
+              "min": 30,
+              "text": "写 10 个小练习：列表、字典、文件读写、异常处理",
+              "deliverable": false
+            },
+            {
+              "id": "w1d2-t4",
+              "min": 20,
+              "text": "用 Java 包结构类比解释 src layout，并写进 README",
+              "deliverable": false
+            }
+          ],
+          "output": "今日交付：可测试的 Python 包"
+        },
+        {
+          "date": "2026-11-25",
+          "kind": "weekday",
+          "hours": 2,
+          "focus": "HTTP / async 与第一次 LLM API 调用",
+          "tasks": [
+            {
+              "id": "w1d3-t1",
+              "min": 40,
+              "text": "写 llm_client.py：base_url / api_key / model 从环境变量读取",
+              "deliverable": true
+            },
+            {
+              "id": "w1d3-t2",
+              "min": 30,
+              "text": "加 30s 超时 + 2 次指数退避重试",
+              "deliverable": false
+            },
+            {
+              "id": "w1d3-t3",
+              "min": 30,
+              "text": "制造断网、错误 key、超时三种失败，记录表现与错误码",
+              "deliverable": true
+            },
+            {
+              "id": "w1d3-t4",
+              "min": 20,
+              "text": "用 5 组问题对比 tokens、延迟与答案质量",
+              "deliverable": false
+            }
+          ],
+          "output": "今日交付：可运行的 llm_client.py + 失败记录表"
+        },
+        {
+          "date": "2026-11-26",
+          "kind": "weekday",
+          "hours": 2,
+          "focus": "结构化输出与失败路径",
+          "tasks": [
+            {
+              "id": "w1d4-t1",
+              "min": 35,
+              "text": "用 Pydantic 定义响应模型，解析模型返回的 JSON",
+              "deliverable": true
+            },
+            {
+              "id": "w1d4-t2",
+              "min": 30,
+              "text": "加校验失败重试与可读报错，最多重试 2 次",
+              "deliverable": false
+            },
+            {
+              "id": "w1d4-t3",
+              "min": 30,
+              "text": "故意让模型返回非法 JSON，写一个失败测试",
+              "deliverable": true
+            },
+            {
+              "id": "w1d4-t4",
+              "min": 25,
+              "text": "用 Java DTO / Bean Validation 类比总结校验与重试",
+              "deliverable": false
+            }
+          ],
+          "output": "今日交付：类型化响应 + 非法 JSON 失败测试"
+        },
+        {
+          "date": "2026-11-27",
+          "kind": "weekday",
+          "hours": 2,
+          "focus": "Prompt、参数与成本",
+          "tasks": [
+            {
+              "id": "w1d5-t1",
+              "min": 40,
+              "text": "查当前 provider 价格，算 1k / 10k / 100k token 的输入输出成本",
+              "deliverable": false
+            },
+            {
+              "id": "w1d5-t2",
+              "min": 30,
+              "text": "固定 5 组问题，对比 temperature 0 / 0.7 / 1.0 的输出",
+              "deliverable": false
+            },
+            {
+              "id": "w1d5-t3",
+              "min": 30,
+              "text": "记录 tokens、延迟、质量，选出最佳参数组合",
+              "deliverable": true
+            },
+            {
+              "id": "w1d5-t4",
+              "min": 20,
+              "text": "写一页 prompt 迭代前后对比，说明只改了哪个变量",
+              "deliverable": true
+            }
+          ],
+          "output": "今日交付：成本表 + 参数对比 + 最佳 prompt"
+        },
+        {
+          "date": "2026-11-28",
+          "kind": "weekend",
+          "hours": 8,
+          "focus": "项目日：CLI chat v0.1",
+          "tasks": [
+            {
+              "id": "w1d6-t1",
+              "min": 120,
+              "text": "实现 CLI chat：多轮历史、配置文件、错误处理",
+              "deliverable": true
+            },
+            {
+              "id": "w1d6-t2",
+              "min": 90,
+              "text": "加流式输出与 Ctrl+C 中断处理",
+              "deliverable": false
+            },
+            {
+              "id": "w1d6-t3",
+              "min": 120,
+              "text": "写 5 个测试：正常、空输入、超时、非法 JSON、断网",
+              "deliverable": true
+            },
+            {
+              "id": "w1d6-t4",
+              "min": 90,
+              "text": "写 README：安装、配置、运行、失败排查",
+              "deliverable": false
+            },
+            {
+              "id": "w1d6-t5",
+              "min": 60,
+              "text": "录一个 3 分钟 demo，讲清一个失败路径",
+              "deliverable": true
+            }
+          ],
+          "output": "今日交付：可运行 CLI + 5 个测试 + demo"
+        },
+        {
+          "date": "2026-11-29",
+          "kind": "weekend",
+          "hours": 8,
+          "focus": "交付日：验收、周测与复盘",
+          "tasks": [
+            {
+              "id": "w1d7-t1",
+              "min": 120,
+              "text": "逐项验收本周交付物，补齐缺失文档",
+              "deliverable": true
+            },
+            {
+              "id": "w1d7-t2",
+              "min": 90,
+              "text": "算法周测：数组、二分、哈希表、双指针、栈各 2 题",
+              "deliverable": false
+            },
+            {
+              "id": "w1d7-t3",
+              "min": 90,
+              "text": "记忆卡周测：本周全部卡片过一遍，错 3 张以上重看笔记",
+              "deliverable": false
+            },
+            {
+              "id": "w1d7-t4",
+              "min": 90,
+              "text": "写周复盘：最大卡点 / 下周只改一件事 / 最值钱认知",
+              "deliverable": true
+            },
+            {
+              "id": "w1d7-t5",
+              "min": 90,
+              "text": "整理 W1 交付包，提交 git 并推送",
+              "deliverable": true
+            }
+          ],
+          "output": "今日交付：W1 交付包 + 周复盘"
+        }
+      ],
+      "deliverables": [
+        "可复用的 llm_client.py（重试 / 超时 / 结构化输出 / 用量统计）",
+        "CLI chat v0.1（多轮 + 流式 + 配置 + 错误处理）",
+        "5 个失败路径测试（空输入、超时、非法 JSON、断网、错误 key）",
+        "成本 / 参数对比表与技术地图 v0",
+        "第 1 周复盘"
+      ],
+      "checkpoints": [
+        "能不看文档说清 temperature、top_p、max_tokens 各自的影响",
+        "能解释结构化输出为什么需要「校验 + 重试」，而不是「让模型别出错」",
+        "断网时 client 能在有限次数内失败，并给出可读错误",
+        "测试覆盖正常路径 + 至少 4 个失败路径"
+      ],
+      "interview": [
+        "你理解的「AI 应用开发」和「算法工程师」有什么区别？",
+        "调用大模型时你做过哪些工程上的防护？",
+        "token 是怎么算的？为什么同样的问题费用差很多？",
+        "结构化输出怎么保证稳定？"
+      ],
+      "resources": [
+        {
+          "title": "DeepSeek API 文档",
+          "url": "https://api-docs.deepseek.com/",
+          "note": "本阶段默认调用入口"
+        },
+        {
+          "title": "Anthropic · Building effective agents",
+          "url": "https://www.anthropic.com/engineering/building-effective-agents",
+          "note": "先建立全景"
+        },
+        {
+          "title": "uv 官方文档",
+          "url": "https://docs.astral.sh/uv/",
+          "note": "Python 版本、虚拟环境、依赖三合一"
+        },
+        {
+          "title": "Python 官方教程（中文）",
+          "url": "https://docs.python.org/zh-cn/3/tutorial/",
+          "note": "只查需要的章节"
+        },
+        {
+          "title": "Pydantic 文档",
+          "url": "https://docs.pydantic.dev/",
+          "note": "结构化输出校验"
+        },
+        {
+          "title": "httpx 文档",
+          "url": "https://www.python-httpx.org/",
+          "note": "超时与重试"
+        }
+      ],
+      "retro": [
+        "这周哪一天的计划没完成？原因是估时不准还是被打断？",
+        "Python 写起来最别扭的地方是什么？下周怎么补？"
+      ],
+      "end": "2026-11-29",
+      "hours": 26,
+      "cards": [
+        {
+          "id": "w1-c1",
+          "tag": "全景",
+          "front": "LLM 应用的四种形态是什么？各自的适用边界？",
+          "back": "① Prompt 工程：改输入，成本最低，先做；② RAG：把外部知识检索进上下文，解决「不知道」和「知识过期」；③ Agent：让模型决定调用工具、分步执行，解决「步骤不定」；④ 微调：改变模型行为 / 风格 / 领域能力，成本最高，最后考虑。选型顺序通常是 Prompt → RAG → Agent → 微调。"
+        },
+        {
+          "id": "w1-c2",
+          "tag": "基础",
+          "front": "什么是 token？为什么它同时决定成本和延迟？",
+          "back": "token 是模型处理文本的最小单位。API 按输入 + 输出 token 计费，上下文越长、输出越长越贵；输出 token 越多，推理耗时越长。所以「塞满上下文」既贵又慢。"
+        },
+        {
+          "id": "w1-c3",
+          "tag": "基础",
+          "front": "上下文窗口和最大输出长度是一回事吗？",
+          "back": "不是。上下文窗口 = 输入 + 输出共享的总预算；最大输出长度是单次生成的上限。超窗口要做截断、摘要或检索，而不是硬塞。"
+        },
+        {
+          "id": "w1-c4",
+          "tag": "参数",
+          "front": "temperature 和 top_p 分别控制什么？怎么选？",
+          "back": "temperature 缩放概率分布：越低越确定、越高越发散；top_p 是核采样，只在累计概率前 p 的候选里采样。实践：抽取 / 分类 / 代码用 0–0.3；创意写作用 0.7–1.0；一般不要同时大改两个。"
+        },
+        {
+          "id": "w1-c5",
+          "tag": "工程",
+          "front": "为什么 LLM 调用必须加超时和重试？",
+          "back": "模型 API 会超时、限流、返回 5xx，网络也会断。没有超时会把线程 / 请求挂死；没有重试会把偶发失败当成永久失败。做法：连接超时 + 总超时、指数退避 + 抖动、只对可重试错误重试、设置最大次数。"
+        },
+        {
+          "id": "w1-c6",
+          "tag": "结构化输出",
+          "front": "结构化输出为什么需要「校验 + 重试」，而不是「让模型别出错」？",
+          "back": "模型输出是概率生成，即使给了 schema 也不能保证 100% 合法。可靠做法是：定义 schema → 解析 → 校验 → 失败时带上错误信息重试 → 超过次数返回可读错误。这和生产系统校验外部输入是同一个思路。"
+        },
+        {
+          "id": "w1-c7",
+          "tag": "成本",
+          "front": "一次 LLM 调用的成本怎么估算？",
+          "back": "成本 ≈ 输入 token × 输入单价 + 输出 token × 输出单价。要先测平均输入 / 输出 token，再乘调用量。优化顺序通常是：减少无效上下文 → 缩短输出 → 缓存 → 换更便宜的模型。"
+        },
+        {
+          "id": "w1-c8",
+          "tag": "RAG",
+          "front": "RAG 和微调分别解决什么问题？什么时候选 RAG？",
+          "back": "RAG 解决「模型不知道」和「知识过期」：把外部文档检索进上下文，更新快、可引用、成本低。微调解决「行为 / 风格 / 领域能力」：需要训练数据、成本高、更新慢。多数业务先从 RAG 开始。"
+        },
+        {
+          "id": "w1-c9",
+          "tag": "Agent",
+          "front": "Agent 和普通 LLM 调用最核心的区别是什么？",
+          "back": "普通调用是「一次输入 → 一次输出」；Agent 让模型在多步循环里决定下一步动作、调用工具、观察结果，直到完成任务。代价是状态、错误恢复、评测和成本都更难。"
+        },
+        {
+          "id": "w1-c10",
+          "tag": "Java 类比",
+          "front": "用 Java 后端的概念类比 LLM 客户端的三层防护。",
+          "back": "超时 ≈ HTTP client 的 connect / read timeout；重试 ≈ Spring Retry / Resilience4j；结构化输出校验 ≈ DTO + Bean Validation。区别是 LLM 的输出不是可信输入，校验失败要带着错误信息重新请求，而不是直接抛给上层。"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "phase": "P0 工程地基",
+      "start": "2026-11-30",
+      "theme": "Prompt、结构化输出与函数调用",
+      "goal": "把 prompt 从「试出来」变成可评测、可回滚的工程资产，并掌握 function calling。",
+      "why": "第二周开始，模型输出要进入程序，不能靠肉眼判断好坏；prompt 也要有版本和对比。",
+      "concepts": [
+        "prompt 版本化",
+        "few-shot 与指令结构",
+        "JSON schema / JSON mode",
+        "function calling",
+        "评测基线"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w2-c1",
+          "text": "建 prompt 版本表，至少 3 个版本可切换"
+        },
+        {
+          "id": "w2-c2",
+          "text": "用同一组 10 个问题对比 3 个 prompt 版本"
+        },
+        {
+          "id": "w2-c3",
+          "text": "做一个 function calling demo：2 个工具 + 参数校验"
+        },
+        {
+          "id": "w2-c4",
+          "text": "建 20 条评测集，记录通过率与失败原因"
+        }
+      ],
+      "deliverables": [
+        "prompt 版本库",
+        "function calling demo",
+        "20 条评测集 + 对比报告"
+      ],
+      "checkpoints": [
+        "能说清 JSON mode 与 function calling 的区别",
+        "prompt 每次改动都有对比数据",
+        "评测集覆盖正常与失败输入"
+      ],
+      "interview": [
+        "你怎么评测一个 prompt 的好坏？",
+        "结构化输出怎么保证稳定？"
+      ],
+      "resources": [
+        {
+          "title": "OpenAI · Function calling",
+          "url": "https://platform.openai.com/docs/guides/function-calling"
+        },
+        {
+          "title": "Anthropic · Tool use",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/tool-use"
+        }
+      ],
+      "retro": [
+        "prompt 改动是靠感觉还是靠数据？",
+        "这周哪个失败路径最有价值？"
+      ],
+      "end": "2026-12-06",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 3,
+      "phase": "P0 工程地基",
+      "start": "2026-12-07",
+      "theme": "流式输出、日志追踪与评测入门",
+      "goal": "让 LLM 调用可观测：流式、trace、成本、延迟、错误率。",
+      "why": "进入 RAG 前先把可观测性做好，否则后面调优无法归因。",
+      "concepts": [
+        "streaming",
+        "trace / span",
+        "token accounting",
+        "eval harness",
+        "TTFT 与总延迟"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w3-c1",
+          "text": "把 CLI chat 改成流式输出，记录 TTFT"
+        },
+        {
+          "id": "w3-c2",
+          "text": "给每次调用打 trace：输入、输出、tokens、延迟、错误"
+        },
+        {
+          "id": "w3-c3",
+          "text": "跑 20 条评测，输出通过率与失败分类"
+        },
+        {
+          "id": "w3-c4",
+          "text": "做一页成本 / 延迟看板（Markdown 即可）"
+        }
+      ],
+      "deliverables": [
+        "流式 chat",
+        "trace JSON",
+        "评测报告 v1"
+      ],
+      "checkpoints": [
+        "能定位一次慢请求的瓶颈",
+        "能解释 TTFT 与总延迟",
+        "评测结果可重复"
+      ],
+      "interview": [
+        "怎么监控一个 LLM 应用？",
+        "流式输出的原理和坑？"
+      ],
+      "resources": [
+        {
+          "title": "OpenTelemetry GenAI 语义约定",
+          "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+        },
+        {
+          "title": "Langfuse 文档",
+          "url": "https://langfuse.com/docs"
+        }
+      ],
+      "retro": [
+        "可观测性做到了什么程度？",
+        "哪项指标最能指导下一步？"
+      ],
+      "end": "2026-12-13",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 4,
+      "phase": "P1 RAG 工程化",
+      "start": "2026-12-14",
+      "theme": "文档解析、chunking、embedding 与向量库",
+      "goal": "搭出可复现的 ingest 管道：解析 → 清洗 → 切分 → 向量化 → 入库。",
+      "why": "RAG 的效果一半取决于 ingest，而不是模型。",
+      "concepts": [
+        "文档解析",
+        "chunking 策略",
+        "embedding 模型",
+        "向量索引",
+        "元数据"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w4-c1",
+          "text": "解析 3 种格式：Markdown、PDF、HTML"
+        },
+        {
+          "id": "w4-c2",
+          "text": "对比 3 种 chunk size / overlap 的切分结果"
+        },
+        {
+          "id": "w4-c3",
+          "text": "用 embedding + 向量库完成入库与检索 smoke test"
+        },
+        {
+          "id": "w4-c4",
+          "text": "同一文档重复 ingest 结果一致（幂等）"
+        }
+      ],
+      "deliverables": [
+        "ingest 管道",
+        "chunk 报告",
+        "检索 smoke test"
+      ],
+      "checkpoints": [
+        "能解释 chunk size / overlap 的取舍",
+        "同一文档可复现向量",
+        "元数据可用于过滤"
+      ],
+      "interview": [
+        "chunking 怎么做？",
+        "embedding 模型怎么选？"
+      ],
+      "resources": [
+        {
+          "title": "NirDiamant/RAG_Techniques",
+          "url": "https://github.com/NirDiamant/RAG_Techniques"
+        },
+        {
+          "title": "DataTalksClub/llm-zoomcamp",
+          "url": "https://github.com/DataTalksClub/llm-zoomcamp"
+        }
+      ],
+      "retro": [
+        "ingest 哪一步最耗时？",
+        "切分策略有什么数据支撑？"
+      ],
+      "end": "2026-12-20",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 5,
+      "phase": "P1 RAG 工程化",
+      "start": "2026-12-21",
+      "theme": "检索、hybrid、rerank 与引用",
+      "goal": "把召回做成可调参的系统：dense / sparse / hybrid + rerank + citation。",
+      "why": "只做向量检索会遇到专有名词和数字查不准，hybrid + rerank 是常见解法。",
+      "concepts": [
+        "BM25",
+        "hybrid fusion",
+        "rerank",
+        "citation",
+        "recall@k"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w5-c1",
+          "text": "搭 BM25 baseline，记录 recall@k"
+        },
+        {
+          "id": "w5-c2",
+          "text": "做 hybrid 检索并与 baseline 对比"
+        },
+        {
+          "id": "w5-c3",
+          "text": "接入 rerank，比较效果与延迟"
+        },
+        {
+          "id": "w5-c4",
+          "text": "输出带引用（chunk id / 文档链接）的答案"
+        }
+      ],
+      "deliverables": [
+        "检索服务",
+        "20 条查询对比",
+        "带引用的答案"
+      ],
+      "checkpoints": [
+        "recall@k 有前后对比",
+        "能解释 rerank 的成本",
+        "引用可追溯到原文"
+      ],
+      "interview": [
+        "hybrid search 怎么融合？",
+        "rerank 模型怎么选？"
+      ],
+      "resources": [
+        {
+          "title": "NirDiamant/RAG_Techniques",
+          "url": "https://github.com/NirDiamant/RAG_Techniques"
+        },
+        {
+          "title": "Ragas 文档",
+          "url": "https://docs.ragas.io/"
+        }
+      ],
+      "retro": [
+        "哪种检索策略提升最大？",
+        "引用有没有真正被用户需要？"
+      ],
+      "end": "2026-12-27",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 6,
+      "phase": "P1 RAG 工程化",
+      "start": "2026-12-28",
+      "theme": "RAG 评测、bad case 与成本",
+      "goal": "项目一 v1.0：30 条评测、bad case 分析、优化前后对比。",
+      "why": "没有评测的 RAG 只是 demo；项目一必须能讲清改了什么、提升了多少。",
+      "concepts": [
+        "评测集设计",
+        "faithfulness",
+        "answer relevance",
+        "context precision",
+        "成本 / 延迟"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w6-c1",
+          "text": "建 30 条评测集，覆盖事实、推理、拒答、越界"
+        },
+        {
+          "id": "w6-c2",
+          "text": "跑 ragas 指标并记录基线"
+        },
+        {
+          "id": "w6-c3",
+          "text": "做 bad case 分类：检索错、切分错、模型错、问题本身"
+        },
+        {
+          "id": "w6-c4",
+          "text": "一条命令启动项目一，并写 README"
+        }
+      ],
+      "deliverables": [
+        "项目一 v1.0",
+        "30 条评测 + 优化前后对比",
+        "bad case 报告",
+        "演示视频"
+      ],
+      "checkpoints": [
+        "评测可复现",
+        "能解释每个指标",
+        "有至少 3 个失败案例"
+      ],
+      "interview": [
+        "RAG 怎么评测？",
+        "怎么减少幻觉？"
+      ],
+      "resources": [
+        {
+          "title": "Ragas 文档",
+          "url": "https://docs.ragas.io/"
+        },
+        {
+          "title": "promptfoo",
+          "url": "https://github.com/promptfoo/promptfoo"
+        }
+      ],
+      "retro": [
+        "项目一最值钱的改动是什么？",
+        "哪个指标最容易被刷分？"
+      ],
+      "end": "2027-01-03",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 7,
+      "phase": "P2 Agent 基础",
+      "start": "2027-01-04",
+      "theme": "ReAct、tool calling 与状态机",
+      "goal": "不依赖框架，手写一个可解释的 Agent 循环。",
+      "why": "框架会掩盖状态和错误处理；先手写一遍，后面用 LangGraph 才知道它在做什么。",
+      "concepts": [
+        "ReAct",
+        "tool schema",
+        "state machine",
+        "max steps",
+        "observation"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w7-c1",
+          "text": "手写 ReAct 循环，输出 thought / action / observation"
+        },
+        {
+          "id": "w7-c2",
+          "text": "实现 3 个工具：搜索、计算、读文件"
+        },
+        {
+          "id": "w7-c3",
+          "text": "加 max steps、超时、工具失败重试"
+        },
+        {
+          "id": "w7-c4",
+          "text": "保存完整 trace，能回放一次任务"
+        }
+      ],
+      "deliverables": [
+        "手写 Agent",
+        "3 个工具",
+        "失败测试 + trace"
+      ],
+      "checkpoints": [
+        "能解释 ReAct 的三段式",
+        "工具失败可恢复",
+        "有步数 / 时间上限"
+      ],
+      "interview": [
+        "ReAct 原理？",
+        "什么时候不该用 Agent？"
+      ],
+      "resources": [
+        {
+          "title": "Anthropic · Building effective agents",
+          "url": "https://www.anthropic.com/engineering/building-effective-agents"
+        },
+        {
+          "title": "ReAct 论文",
+          "url": "https://arxiv.org/abs/2210.03629"
+        }
+      ],
+      "retro": [
+        "Agent 为什么走错路？",
+        "手写循环暴露了哪些框架问题？"
+      ],
+      "end": "2027-01-10",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 8,
+      "phase": "P2 Agent 基础",
+      "start": "2027-01-11",
+      "theme": "工具设计、错误恢复、memory 与 MCP",
+      "goal": "让 Agent 在真实工具上跑稳：工具设计、重试、记忆、MCP。",
+      "why": "Agent 的失败大多不是模型笨，而是工具契约和恢复策略没设计好。",
+      "concepts": [
+        "工具命名与参数",
+        "幂等性",
+        "retry / circuit breaker",
+        "memory",
+        "MCP"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w8-c1",
+          "text": "建工具注册表，统一 schema 与错误格式"
+        },
+        {
+          "id": "w8-c2",
+          "text": "让写操作幂等，重复调用不产生副作用"
+        },
+        {
+          "id": "w8-c3",
+          "text": "加短期记忆与用户偏好记忆"
+        },
+        {
+          "id": "w8-c4",
+          "text": "做一个最小 MCP server / client demo"
+        }
+      ],
+      "deliverables": [
+        "工具注册表",
+        "memory 模块",
+        "MCP demo",
+        "失败案例集"
+      ],
+      "checkpoints": [
+        "工具失败可恢复",
+        "记忆不污染后续任务",
+        "能讲清 MCP 解决什么"
+      ],
+      "interview": [
+        "工具怎么设计？",
+        "memory 怎么存、怎么删？"
+      ],
+      "resources": [
+        {
+          "title": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/"
+        },
+        {
+          "title": "Anthropic · Tool use",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/tool-use"
+        }
+      ],
+      "retro": [
+        "哪个工具最难设计？",
+        "记忆带来了哪些新问题？"
+      ],
+      "end": "2027-01-17",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 9,
+      "phase": "P2 Agent 基础",
+      "start": "2027-01-18",
+      "theme": "Agent 评测、guardrails 与成本",
+      "goal": "给 Agent 建评测集、护栏和成本预算。",
+      "why": "Agent 的自由度越高，越需要评测和边界。",
+      "concepts": [
+        "task success rate",
+        "trajectory eval",
+        "guardrails",
+        "预算",
+        "human approval"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w9-c1",
+          "text": "建 30 条任务评测，记录成功率与步数"
+        },
+        {
+          "id": "w9-c2",
+          "text": "加 guardrails：危险工具、敏感信息、循环检测"
+        },
+        {
+          "id": "w9-c3",
+          "text": "给每次任务设 token / 金额预算"
+        },
+        {
+          "id": "w9-c4",
+          "text": "关键操作加人工审批"
+        }
+      ],
+      "deliverables": [
+        "Agent 评测报告",
+        "guardrails",
+        "成本看板"
+      ],
+      "checkpoints": [
+        "任务成功率可复现",
+        "能拦截危险调用",
+        "成本可控"
+      ],
+      "interview": [
+        "Agent 怎么评测？",
+        "怎么防 prompt injection？"
+      ],
+      "resources": [
+        {
+          "title": "promptfoo",
+          "url": "https://github.com/promptfoo/promptfoo"
+        },
+        {
+          "title": "OWASP Top 10 for LLM",
+          "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+        }
+      ],
+      "retro": [
+        "评分标准和真实体验差多少？",
+        "护栏有没有误伤？"
+      ],
+      "end": "2027-01-24",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 10,
+      "phase": "P3 Agent 工程化",
+      "start": "2027-01-25",
+      "theme": "LangGraph、human-in-the-loop 与持久化",
+      "goal": "用图编排 Agent，支持中断、恢复、人工审批。",
+      "why": "项目二需要一个可恢复、可观测的运行时，而不是一个 while 循环。",
+      "concepts": [
+        "graph / state / checkpoint",
+        "interrupt",
+        "human-in-the-loop",
+        "persistence"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w10-c1",
+          "text": "用 LangGraph 重写 W7 的 Agent"
+        },
+        {
+          "id": "w10-c2",
+          "text": "加 checkpoint，进程重启后能恢复"
+        },
+        {
+          "id": "w10-c3",
+          "text": "加 interrupt + 人工审批节点"
+        },
+        {
+          "id": "w10-c4",
+          "text": "保存并回放一次完整执行"
+        }
+      ],
+      "deliverables": [
+        "图工作流",
+        "checkpoint 存储",
+        "审批流程"
+      ],
+      "checkpoints": [
+        "中断后可恢复",
+        "状态可回放",
+        "审批节点可插入"
+      ],
+      "interview": [
+        "工作流和 Agent 怎么选？",
+        "状态怎么持久化？"
+      ],
+      "resources": [
+        {
+          "title": "LangGraph 文档",
+          "url": "https://langchain-ai.github.io/langgraph/"
+        },
+        {
+          "title": "microsoft/ai-agents-for-beginners",
+          "url": "https://github.com/microsoft/ai-agents-for-beginners"
+        }
+      ],
+      "retro": [
+        "图编排比 while 循环多解决了什么？",
+        "恢复点在哪些地方最容易丢状态？"
+      ],
+      "end": "2027-01-31",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 11,
+      "phase": "P3 Agent 工程化",
+      "start": "2027-02-01",
+      "theme": "春节缓冲：项目二立项与设计",
+      "goal": "轻量周：复盘、项目二设计、环境准备。",
+      "why": "春节必断，提前留缓冲，避免整条计划崩掉。",
+      "concepts": [
+        "项目范围",
+        "验收指标",
+        "风险清单"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w11-c1",
+          "text": "写项目二设计文档：目标、边界、架构、里程碑"
+        },
+        {
+          "id": "w11-c2",
+          "text": "起草 30 条评测集"
+        },
+        {
+          "id": "w11-c3",
+          "text": "列风险清单，每项写对策"
+        },
+        {
+          "id": "w11-c4",
+          "text": "把开发环境、依赖、密钥准备好"
+        }
+      ],
+      "deliverables": [
+        "项目二设计文档",
+        "评测集草稿",
+        "风险清单"
+      ],
+      "checkpoints": [
+        "范围可控",
+        "验收可测",
+        "风险有对策"
+      ],
+      "interview": [
+        "你怎么做项目设计？"
+      ],
+      "resources": [
+        {
+          "title": "Anthropic · Building effective agents",
+          "url": "https://www.anthropic.com/engineering/building-effective-agents"
+        }
+      ],
+      "retro": [
+        "假期前最该准备什么？",
+        "项目二的范围有没有过大？"
+      ],
+      "end": "2027-02-07",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 12,
+      "phase": "P3 Agent 工程化",
+      "start": "2027-02-08",
+      "theme": "项目二实现、评测与 demo",
+      "goal": "项目二 v1.0：真实任务、可恢复、30 条评测、演示。",
+      "why": "项目二是平台能力的核心证据。",
+      "concepts": [
+        "端到端集成",
+        "tracing",
+        "评测",
+        "演示叙事"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w12-c1",
+          "text": "跑通一个真实任务的端到端链路"
+        },
+        {
+          "id": "w12-c2",
+          "text": "补齐 30 条评测并记录基线"
+        },
+        {
+          "id": "w12-c3",
+          "text": "整理至少 5 个失败案例与修复"
+        },
+        {
+          "id": "w12-c4",
+          "text": "录 3–5 分钟 demo，讲清架构与取舍"
+        }
+      ],
+      "deliverables": [
+        "项目二 v1.0",
+        "评测报告",
+        "演示视频",
+        "diff note"
+      ],
+      "checkpoints": [
+        "一键启动",
+        "评测可复现",
+        "能讲清架构取舍"
+      ],
+      "interview": [
+        "介绍你的 Agent 项目？",
+        "最难的问题怎么解决的？"
+      ],
+      "resources": [
+        {
+          "title": "NirDiamant/GenAI_Agents",
+          "url": "https://github.com/NirDiamant/GenAI_Agents"
+        },
+        {
+          "title": "LangGraph 文档",
+          "url": "https://langchain-ai.github.io/langgraph/"
+        }
+      ],
+      "retro": [
+        "项目二最能证明什么能力？",
+        "哪个取舍最后悔？"
+      ],
+      "end": "2027-02-14",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 13,
+      "phase": "P4 Java 企业级 AI",
+      "start": "2027-02-15",
+      "theme": "Spring AI / LangChain4j 与多模型路由",
+      "goal": "把 RAG / Agent 能力接进 Java 服务，做多模型路由。",
+      "why": "Java 后端经验是差异化，不是包袱。",
+      "concepts": [
+        "Spring AI",
+        "LangChain4j",
+        "多模型路由",
+        "fallback"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w13-c1",
+          "text": "建一个 Spring Boot 服务，接入 Spring AI 或 LangChain4j"
+        },
+        {
+          "id": "w13-c2",
+          "text": "调用项目一的 RAG 接口"
+        },
+        {
+          "id": "w13-c3",
+          "text": "实现两个模型的路由与 fallback"
+        },
+        {
+          "id": "w13-c4",
+          "text": "写集成测试，覆盖主模型失败"
+        }
+      ],
+      "deliverables": [
+        "Java AI 服务",
+        "多模型路由 demo",
+        "集成测试"
+      ],
+      "checkpoints": [
+        "能切换模型",
+        "主模型失败可降级",
+        "接口风格与存量系统一致"
+      ],
+      "interview": [
+        "Java 怎么接大模型？",
+        "多模型路由怎么做？"
+      ],
+      "resources": [
+        {
+          "title": "spring-projects/spring-ai",
+          "url": "https://github.com/spring-projects/spring-ai"
+        },
+        {
+          "title": "langchain4j/langchain4j",
+          "url": "https://github.com/langchain4j/langchain4j"
+        }
+      ],
+      "retro": [
+        "Java 生态缺什么？",
+        "路由策略的依据是什么？"
+      ],
+      "end": "2027-02-21",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 14,
+      "phase": "P4 Java 企业级 AI",
+      "start": "2027-02-22",
+      "theme": "权限、审计、限流与存量集成",
+      "goal": "项目三收尾：权限、审计、限流、成本、简历 v1。",
+      "why": "企业级 AI 的难点在治理，不在调用。",
+      "concepts": [
+        "鉴权",
+        "审计日志",
+        "限流",
+        "成本控制",
+        "可观测性"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w14-c1",
+          "text": "加鉴权：不同角色能看到不同文档 / 工具"
+        },
+        {
+          "id": "w14-c2",
+          "text": "加审计日志：谁、何时、调了什么、花了多少"
+        },
+        {
+          "id": "w14-c3",
+          "text": "加限流与成本上限"
+        },
+        {
+          "id": "w14-c4",
+          "text": "写简历 v1，三个项目量化"
+        }
+      ],
+      "deliverables": [
+        "项目三",
+        "审计 demo",
+        "简历 v1"
+      ],
+      "checkpoints": [
+        "权限可验证",
+        "审计可追溯",
+        "成本可统计"
+      ],
+      "interview": [
+        "企业落地 AI 的难点？",
+        "怎么做审计？"
+      ],
+      "resources": [
+        {
+          "title": "Spring Security 文档",
+          "url": "https://docs.spring.io/spring-security/reference/"
+        },
+        {
+          "title": "spring-projects/spring-ai",
+          "url": "https://github.com/spring-projects/spring-ai"
+        }
+      ],
+      "retro": [
+        "项目三和项目一 / 二的分工清楚吗？",
+        "简历里哪个数字最虚？"
+      ],
+      "end": "2027-02-28",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 15,
+      "phase": "P5 生产化与求职",
+      "start": "2027-03-01",
+      "theme": "Docker、可观测性与作品集",
+      "goal": "三个项目可一键启动，作品集页面成型。",
+      "why": "面试官不会给你配环境；一键启动和 demo 是基本盘。",
+      "concepts": [
+        "Docker Compose",
+        "可观测性",
+        "压测",
+        "作品集叙事"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w15-c1",
+          "text": "三个项目都加 Docker Compose / 一键启动脚本"
+        },
+        {
+          "id": "w15-c2",
+          "text": "加基础指标：延迟、错误率、token 成本"
+        },
+        {
+          "id": "w15-c3",
+          "text": "做一次压测并记录瓶颈"
+        },
+        {
+          "id": "w15-c4",
+          "text": "整理作品集页：问题、方案、指标、失败案例"
+        }
+      ],
+      "deliverables": [
+        "容器化项目",
+        "压测报告",
+        "作品集页面"
+      ],
+      "checkpoints": [
+        "干净机器能跑",
+        "有指标",
+        "有 demo"
+      ],
+      "interview": [
+        "怎么部署？",
+        "怎么压测 LLM 应用？"
+      ],
+      "resources": [
+        {
+          "title": "Docker 文档",
+          "url": "https://docs.docker.com/"
+        },
+        {
+          "title": "OpenTelemetry",
+          "url": "https://opentelemetry.io/docs/"
+        }
+      ],
+      "retro": [
+        "哪个项目最像产品？",
+        "压测暴露了什么？"
+      ],
+      "end": "2027-03-07",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 16,
+      "phase": "P5 生产化与求职",
+      "start": "2027-03-08",
+      "theme": "八股、系统设计与简历定稿",
+      "goal": "70 题答案库、5 个系统设计、简历定稿。",
+      "why": "技术深度需要表达出来，简历是第一关。",
+      "concepts": [
+        "LLM 八股",
+        "RAG / Agent 系统设计",
+        "简历 STAR",
+        "项目指标"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w16-c1",
+          "text": "整理 70 道高频题，每题写 2 分钟口述版"
+        },
+        {
+          "id": "w16-c2",
+          "text": "做 5 个系统设计：RAG、Agent、评测、权限、成本"
+        },
+        {
+          "id": "w16-c3",
+          "text": "简历定稿，三个项目都有指标"
+        },
+        {
+          "id": "w16-c4",
+          "text": "找 2 个人做简历 review"
+        }
+      ],
+      "deliverables": [
+        "70 题答案库",
+        "5 个系统设计",
+        "简历定稿"
+      ],
+      "checkpoints": [
+        "每题能讲 2 分钟",
+        "设计有取舍",
+        "简历无硬伤"
+      ],
+      "interview": [
+        "高频八股与项目追问"
+      ],
+      "resources": [
+        {
+          "title": "wdndev/llm_interview_note",
+          "url": "https://github.com/wdndev/llm_interview_note"
+        },
+        {
+          "title": "donnemartin/system-design-primer",
+          "url": "https://github.com/donnemartin/system-design-primer"
+        }
+      ],
+      "retro": [
+        "哪类题最没底？",
+        "简历还能删什么？"
+      ],
+      "end": "2027-03-14",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 17,
+      "phase": "P5 生产化与求职",
+      "start": "2027-03-15",
+      "theme": "首批投递与模拟面试",
+      "goal": "30 家投递 + 2 次模拟面。",
+      "why": "用真实反馈驱动最后四周。",
+      "concepts": [
+        "投递漏斗",
+        "模拟面试",
+        "反馈闭环"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w17-c1",
+          "text": "首批投递 30 家，全部记录在看板"
+        },
+        {
+          "id": "w17-c2",
+          "text": "做 2 次模拟面试并录音"
+        },
+        {
+          "id": "w17-c3",
+          "text": "每次面试后 24 小时内写复盘"
+        },
+        {
+          "id": "w17-c4",
+          "text": "按反馈更新一次简历"
+        }
+      ],
+      "deliverables": [
+        "投递看板",
+        "模拟面反馈",
+        "简历 v2"
+      ],
+      "checkpoints": [
+        "投递有记录",
+        "模拟面有录音 / 反馈",
+        "简历按反馈更新"
+      ],
+      "interview": [
+        "模拟面试题"
+      ],
+      "resources": [
+        {
+          "title": "ByteByteGoHq/system-design-101",
+          "url": "https://github.com/ByteByteGoHq/system-design-101"
+        }
+      ],
+      "retro": [
+        "投递转化率如何？",
+        "模拟面暴露了哪个短板？"
+      ],
+      "end": "2027-03-21",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 18,
+      "phase": "P5 生产化与求职",
+      "start": "2027-03-22",
+      "theme": "补投、面试复盘与弱项补强",
+      "goal": "补投 20 家，面试复盘，弱项转记忆卡。",
+      "why": "面试是采样，复盘才能提高命中率。",
+      "concepts": [
+        "面试复盘",
+        "弱项分类",
+        "记忆卡闭环"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w18-c1",
+          "text": "补投 20 家，累计 50 家"
+        },
+        {
+          "id": "w18-c2",
+          "text": "复盘至少 5 场面试，按原因分类"
+        },
+        {
+          "id": "w18-c3",
+          "text": "把答不出的题转成记忆卡"
+        },
+        {
+          "id": "w18-c4",
+          "text": "写清下周每天的动作"
+        }
+      ],
+      "deliverables": [
+        "累计 50 家投递",
+        "面试复盘日志",
+        "弱项卡片组"
+      ],
+      "checkpoints": [
+        "每个失败有原因",
+        "弱项有卡片",
+        "下周动作明确"
+      ],
+      "interview": [
+        "面试复盘怎么做？"
+      ],
+      "resources": [
+        {
+          "title": "wdndev/llm_interview_note",
+          "url": "https://github.com/wdndev/llm_interview_note"
+        }
+      ],
+      "retro": [
+        "最常挂在哪一类问题？",
+        "哪些弱项是伪弱项？"
+      ],
+      "end": "2027-03-28",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 19,
+      "phase": "P6 面试收尾",
+      "start": "2027-03-29",
+      "theme": "面试高峰与弱项转卡",
+      "goal": "稳定输出，补齐短板。",
+      "why": "面试高峰不是学新课，而是把已会的讲稳。",
+      "concepts": [
+        "表达结构",
+        "压力管理",
+        "追问应对"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w19-c1",
+          "text": "每天一次 30 分钟模拟口述"
+        },
+        {
+          "id": "w19-c2",
+          "text": "每天清空到期记忆卡"
+        },
+        {
+          "id": "w19-c3",
+          "text": "每场面试前做公司 / 岗位调研"
+        },
+        {
+          "id": "w19-c4",
+          "text": "每场面试后写 3 条反馈"
+        }
+      ],
+      "deliverables": [
+        "每日复盘",
+        "更新后的卡片组",
+        "offer 管道"
+      ],
+      "checkpoints": [
+        "每天有复盘",
+        "弱项在减少",
+        "面试节奏稳定"
+      ],
+      "interview": [
+        "行为面与项目追问"
+      ],
+      "resources": [
+        {
+          "title": "donnemartin/system-design-primer",
+          "url": "https://github.com/donnemartin/system-design-primer"
+        }
+      ],
+      "retro": [
+        "表达上最大的问题？",
+        "哪类追问最容易崩？"
+      ],
+      "end": "2027-04-04",
+      "hours": 26,
+      "cards": []
+    },
+    {
+      "n": 20,
+      "phase": "P6 面试收尾",
+      "start": "2027-04-05",
+      "theme": "offer 对比与 20 周复盘",
+      "goal": "拿到并选对 offer，完成复盘长文。",
+      "why": "选择比努力更重要，复盘让经验可复用。",
+      "concepts": [
+        "offer 对比维度",
+        "职业选择",
+        "复盘方法"
+      ],
+      "detail": false,
+      "checklist": [
+        {
+          "id": "w20-c1",
+          "text": "做 offer 对比表：业务、成长、团队、薪资、地点"
+        },
+        {
+          "id": "w20-c2",
+          "text": "写决策依据，找 2 个人 challenge"
+        },
+        {
+          "id": "w20-c3",
+          "text": "写 20 周复盘长文：数据、拐点、错误"
+        },
+        {
+          "id": "w20-c4",
+          "text": "写下一阶段 3 个月计划"
+        }
+      ],
+      "deliverables": [
+        "offer 对比表",
+        "20 周复盘长文",
+        "下一阶段计划"
+      ],
+      "checkpoints": [
+        "决策有依据",
+        "复盘有数据",
+        "下一步明确"
+      ],
+      "interview": [
+        "职业规划"
+      ],
+      "resources": [
+        {
+          "title": "Anthropic · Building effective agents",
+          "url": "https://www.anthropic.com/engineering/building-effective-agents"
+        }
+      ],
+      "retro": [
+        "20 周最大的认知变化？",
+        "如果重来一次会砍掉什么？"
+      ],
+      "end": "2027-04-11",
+      "hours": 26,
+      "cards": []
+    }
+  ]
+}

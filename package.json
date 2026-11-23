@@ -1,0 +1,16 @@
+{
+  "name": "dev4",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Java 后端 → AI 应用 / Agent 开发 · 20 周作战面板",
+  "scripts": {
+    "content": "node scripts/build-content.mjs",
+    "dev": "node scripts/build-content.mjs && vitepress dev docs",
+    "build": "node scripts/build-content.mjs && vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "1.6.4"
+  }
+}
