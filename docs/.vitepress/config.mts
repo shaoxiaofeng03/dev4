@@ -2,11 +2,33 @@ import { defineConfig } from 'vitepress';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import type { Plugin } from 'vite';
 import { localDataPlugin } from './plugins/localData';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const docsDir = path.resolve(__dirname, '..');
 const dataDir = path.join(docsDir, 'data');
+
+// VitePress 的 base 必须以 / 结尾；本地 dev 时顺手把 /dev4 跳到 /dev4/。
+const base = '/dev4/';
+const baseNoSlash = base.replace(/\/$/, '');
+
+const trailingSlashPlugin = {
+  name: 'dev4-trailing-slash',
+  apply: 'serve',
+  configureServer(server) {
+    server.middlewares.use((req, res, next) => {
+      const [pathname, search = ''] = (req.url ?? '/').split('?');
+      if (pathname === baseNoSlash) {
+        res.statusCode = 302;
+        res.setHeader('Location', `${base}${search ? `?${search}` : ''}`);
+        res.end();
+        return;
+      }
+      next();
+    });
+  },
+} satisfies Plugin;
 
 let plan: {
   meta: { title: string; subtitle: string };
@@ -92,7 +114,7 @@ const guideSidebar = [
 ];
 
 export default defineConfig({
-  base: '/dev4/',
+  base,
   lang: 'zh-CN',
   title: 'dev4 · AI 应用 / Agent 20 周',
   description:
@@ -103,7 +125,7 @@ export default defineConfig({
   head: [
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
     ['meta', { name: 'theme-color', content: '#5b6cff' }],
-    ['link', { rel: 'icon', href: '/dev4/favicon.svg' }],
+    ['link', { rel: 'icon', href: `${base}favicon.svg` }],
   ],
   markdown: {
     lineNumbers: true,
@@ -156,6 +178,7 @@ export default defineConfig({
         checkins: path.join(dataDir, 'checkins.json'),
         review: path.join(dataDir, 'review-state.json'),
       }),
+      trailingSlashPlugin,
     ],
   },
 });
