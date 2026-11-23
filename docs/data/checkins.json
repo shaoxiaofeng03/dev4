@@ -1,5 +1,42 @@
 {
   "version": 1,
   "note": "打卡数据。可手动编辑，格式见 docs/guide/data-format.md",
-  "entries": []
+  "entries": [
+    {
+      "date": "2026-11-23",
+      "items": [
+        "w1d1-t1"
+      ],
+      "note": "",
+      "minutes": 0,
+      "retro": "",
+      "logs": [
+        {
+          "id": "l_mwsp9vv7_xtrsn9",
+          "at": "2026-11-23T03:22:29.396Z",
+          "tag": "idea",
+          "text": "pyproject.toml ≈ pom.xml,声明依赖\nuv.lock ≈ pom.xml 的锁定版本,版本号属性\n.venv ≈ 项目私有的依赖目录，具体以来的内容，不是在不同项目共有的库中，项目实际加载了哪些依赖房子在里面。"
+        },
+        {
+          "id": "l_mwspimdm_avkb29",
+          "at": "2026-11-23T03:29:17.002Z",
+          "tag": "harvest",
+          "text": "python --version\nPython 3.13.7"
+        },
+        {
+          "id": "l_mwspj3vf_e5qrfb",
+          "at": "2026-11-23T03:29:39.675Z",
+          "tag": "harvest",
+          "text": "uv --version\nuv 0.13.8 (3d97a6aad 2026-11-12 x86_64-pc-windows-msvc)"
+        },
+        {
+          "id": "l_mwspjjx0_lb1mqh",
+          "at": "2026-11-23T03:30:00.468Z",
+          "tag": "harvest",
+          "text": "git --version             \ngit version 2.56.1.windows.1"
+        }
+      ],
+      "updatedAt": "2026-11-23T03:30:00.468Z"
+    }
+  ]
 }
