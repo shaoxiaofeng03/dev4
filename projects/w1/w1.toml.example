@@ -1,0 +1,7 @@
+# 复制为 w1.toml 后按需修改。
+# 注意：API key 不写在这里，放到 .env 的 DEEPSEEK_API_KEY。
+model = "deepseek-flash"
+base_url = "https://api.deepseek.com"
+system_prompt = "你是一个简洁、准确的中文编程学习助手。回答尽量短，必要时给例子。"
+timeout = 30
+max_retries = 2

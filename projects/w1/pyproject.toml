@@ -1,0 +1,47 @@
+[project]
+name = "w1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "sky", email = "shaoxiaofeng0322@163.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "httpx>=0.28.1",
+    "pydantic>=2.14.4",
+    "python-dotenv>=1.2.4",
+]
+
+[project.scripts]
+w1-chat = "w1.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+mypy_path = "src"
+files = ["src", "tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"

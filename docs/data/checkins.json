@@ -5,7 +5,10 @@
     {
       "date": "2026-11-23",
       "items": [
-        "w1d1-t1"
+        "w1d1-t1",
+        "w1d1-t2",
+        "w1d1-t3",
+        "w1d1-t4"
       ],
       "note": "",
       "minutes": 0,
@@ -36,7 +39,42 @@
           "text": "git --version             \ngit version 2.56.1.windows.1"
         }
       ],
-      "updatedAt": "2026-11-23T03:30:00.468Z"
+      "updatedAt": "2026-11-23T05:46:49.105Z"
+    },
+    {
+      "date": "2026-11-24",
+      "items": [
+        "w1d2-t1",
+        "w1d2-t2",
+        "w1d2-t3",
+        "w1d2-t4"
+      ],
+      "note": "",
+      "minutes": 0,
+      "retro": "",
+      "logs": [
+        {
+          "id": "l_mwsukgt0_j4sl4f",
+          "at": "2026-11-23T05:50:41.172Z",
+          "tag": "harvest",
+          "text": "uv 在一个项目里负责四件事\n\n  ┌─────────────┬───────────────────────────────────┬────────────────────┐\n  │    职责     │               说明                │     Java 类比      │\n  ├─────────────┼───────────────────────────────────┼────────────────────┤\n  │ Python 版本 │ 安装、切换、固定项目使用的 Python │ SDKMAN             │\n  ├─────────────┼───────────────────────────────────┼────────────────────┤\n  │ 虚拟环境    │ 自动创建和维护 .venv              │ 项目私有依赖目录   │\n  ├─────────────┼───────────────────────────────────┼────────────────────┤\n  │ 依赖与锁    │ 读写 pyproject.toml，生成 uv.lock │ pom.xml + 锁定版本 │\n  ├─────────────┼───────────────────────────────────┼────────────────────┤\n  │ 运行与工具  │ 在项目环境里跑命令、跑一次性工具  │ mvn exec / npx     │\n  └─────────────┴───────────────────────────────────┴────────────────────┘\n\n  必须知道的命令\n\n  初始化与版本\n\n  uv init --lib          # 新建库项目，带 src layout\n  uv init                # 新建应用项目，默认 main.py\n  uv python pin 3.13     # 固定项目 Python 版本，写入 .python-version\n  uv python install 3.13 # 安装指定 Python（需要时）\n\n  ▎ W1 建议用 uv init --lib，正好对应你要的 src/ 结构。\n\n  依赖管理\n\n  uv add httpx pydantic          # 加运行依赖\n  uv add --dev pytest ruff mypy  # 加开发依赖\n  uv remove httpx                # 删依赖\n  uv lock                        # 只更新 uv.lock\n  uv lock --upgrade              # 升级锁文件里的依赖\n  uv tree                        # 看依赖树\n\n  uv add 会同时改 pyproject.toml、uv.lock 并安装到 .venv。\n  不要用 uv pip install 管理项目依赖——它绕过锁文件，容易和 pyproject.toml 不一致。\n\n  同步与运行\n\n  uv sync                  # 按 uv.lock 创建/同步 .venv\n  uv sync --locked         # 锁文件不是最新就报错（CI 用）\n  uv sync --frozen         # 完全按锁文件，不更新（CI / 部署用）\n  uv run python main.py    # 在项目环境里运行\n  uv run pytest            # 跑测试\n  uv run ruff check .      # 跑 lint\n  uv run mypy src          # 跑类型检查\n\n  uv run 会自动确保环境与锁文件一致，所以日常不需要手动 activate .venv。\n\n  一次性工具\n\n  uvx ruff check .                 # 临时运行，不装进项目\n  uv tool install ruff             # 全局安装命令行工具\n  uv tool list\n\n  uvx ≈ npx / pipx run。\n\n  其他常用\n\n  uv build                 # 构建 wheel / sdist\n  uv cache clean           # 清缓存（磁盘满时）\n  uv self update           # 升级 uv 自己\n\n  项目里的文件怎么处理\n\n  ┌─────────────────┬──────────┬──────────────────────────────────────┐\n  │      文件       │ 是否提交 │                 说明                 │\n  ├─────────────────┼──────────┼──────────────────────────────────────┤\n  │ pyproject.toml  │ ✅       │ 依赖和工具配置，≈ pom.xml            │\n  ├─────────────────┼──────────┼──────────────────────────────────────┤\n  │ uv.lock         │ ✅       │ 精确锁定版本，保证别人装出一样的环境 │\n  ├─────────────────┼──────────┼──────────────────────────────────────┤\n  │ .python-version │ ✅       │ 固定 Python 版本                     │\n  ├─────────────────┼──────────┼──────────────────────────────────────┤\n  │ .venv/          │ ❌       │ 本机环境，换机器重新 uv sync         │\n  ├─────────────────┼──────────┼──────────────────────────────────────┤\n  │ .env            │ ❌       │ API key 等密钥，加进 .gitignore      │\n  └─────────────────┴──────────┴──────────────────────────────────────┘\n\n  每天的工作流\n\n  cd projects/w1\n  uv init --lib\n  uv python pin 3.13\n  uv add httpx pydantic python-dotenv\n  uv add --dev pytest ruff mypy\n  uv sync\n\n  uv run pytest\n  uv run python -m w1.main\n\n  四个常见坑\n\n  1. 提交了 .venv：不要提交；提交 uv.lock 就够了。\n  2. 用 uv pip install 加依赖：它不更新 pyproject.toml；项目依赖统一用 uv add。\n  3. CI 里直接 uv sync：CI 用 uv sync --locked 或 --frozen，避免悄悄更新锁文件。\n  4. 以为 uv sync 只装不删：默认会移除锁文件里没有的包；想保留额外安装的包用 uv sync --inexact。"
+        }
+      ],
+      "updatedAt": "2026-11-23T11:37:50.376Z"
+    },
+    {
+      "date": "2026-11-25",
+      "items": [
+        "w1d3-t1",
+        "w1d3-t3",
+        "w1d3-t2",
+        "w1d3-t4"
+      ],
+      "note": "",
+      "minutes": 0,
+      "retro": "",
+      "logs": [],
+      "updatedAt": "2026-11-23T12:09:38.835Z"
     }
   ]
 }
